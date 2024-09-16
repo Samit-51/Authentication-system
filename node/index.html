@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Border effect</title>
+    <style>
+      body{
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        background: black;
+      }
+      .container{
+        height: 300px;
+        aspect-ratio: 1 / 1.5;
+        background: red;
+        border-radius: 0.5rem;
+
+        position: relative;
+      }
+      .container::before,.container::after{
+        content: "";
+        height: inherit;
+        aspect-ratio: 1/1.5;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 5px;
+        z-index: -1;
+        background: conic-gradient(from 0deg, #6a11cb, #2575fc, #ff6f61, #ffcc33, #ff6f61, #2575fc, #6a11cb);
+        border-radius: inherit;
+      }
+      .container::after{
+        filter: blur(200px);
+      }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+        <div class="input-container">
+          <input
+          type="text"
+          placeholder="Username"
+          required />
+        </div>
+        <div class="input-container">
+          <input
+          type="email"
+          placeholder="E-mail"
+          required />
+        </div>
+        <div class="input-container">
+          <input
+          type="password"
+          placeholder="Password"
+          required />
+        </div>
+      </div>
+  </body>
+</html>
