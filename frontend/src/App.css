@@ -1,0 +1,153 @@
+@property --angle{
+  syntax : '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --blur{
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: -7;
+}
+
+#root {
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: -6;
+}
+.wrapper {
+  background: #141414;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  z-index: -2;
+}
+.container{
+  background: #252525;
+  height: fit-content;
+  padding: 20px 30px;
+  border-radius: 20px;
+  position: relative;
+  z-index: -2;
+  display: flex;
+  flex-direction: column;
+}
+.input-container{
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+  margin-bottom: 18px;
+  background: none;
+  color: white;
+  border: none;
+  outline: none;
+  height: 30px;
+  font-size: 16px;
+}
+
+i{
+  color: white;
+  aspect-ratio: 1/1;
+  height: 20px;
+}
+
+button{
+  margin-top: 30px;
+  color: white;
+  background: #252525;
+  border: none;
+  height: 35px;
+  width: 90%;
+  font-size: 18px;
+  font-family: Sans-Serif;
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 10px;
+  margin-inline: auto;
+}
+
+button::before,
+button::after{
+  content: '';
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  background: conic-gradient(from var(--angle), rgb(225,16,89), rgb(225, 100, 40),rgb(220, 218, 60), rgb(69, 112, 225),rgb(200, 90, 225), rgb(118, 112, 225), rgb(225, 100, 40), rgb(225,16,89));
+  border-radius: inherit;
+  z-index: -1;
+  padding: 2px;
+  animation: animate linear 10s infinite;
+}
+
+button::after{
+  filter: blur(var(--blur));
+}
+
+@keyframes animate{
+  0%,100%{
+    --blur: 4px;
+  }
+  50%{
+    --blur: 14px;
+  }
+  100%{
+    --angle: 360deg;
+  }
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.link{
+  font-size: 14px;
+  width: fit-content;
+  color: white;
+  margin-top: 10px;
+  margin-inline: auto;
+}
+a{
+  text-decoration: none;
+  color: rgb(119, 225, 50);
+}
+
+h1{
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: white;
+}
+.save-info{
+  color: white;
+  width: fit-content;
+  margin-inline-end: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.error{
+  font-size: 14px;
+  color: rgb(225, 85, 68);
+  margin-bottom: 12px;
+}
