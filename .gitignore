@@ -1,3 +1,6 @@
 .env
-node_modules
+node/node_modules
+frontend/node_modules
+node/package-lock.json
+frontend/package-lock.json
 build
