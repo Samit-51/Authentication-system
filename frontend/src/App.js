@@ -16,10 +16,10 @@ const App =  () =>{
           if (response.data.success) {
             navigate('/dashboard'); 
           }else{
-            navigate('/login'); 
+            navigate('/signin'); 
           }
         } catch (error) {
-          navigate('/login'); 
+          navigate('/signin'); 
         }
     };
     checkToken();
