@@ -24,6 +24,7 @@ const handleErrors = (err) => {
 
 module.exports.signin_post = async (req, res) => {
   const { username, email, password } = req.body;
+  console.log(req.body)
   try {
     const user = await User.create({
       Username: username,
@@ -35,7 +36,7 @@ module.exports.signin_post = async (req, res) => {
     res.send('Verified');
   } catch (e) {
     const errors = handleErrors(e);
-    res.status(400).send({ errors });
+    res.send({ errors });
   }
 };
 
@@ -48,12 +49,12 @@ module.exports.login_post = async (req, res) => {
       res.cookie('jwt', token, { maxAge: 1000 * 60 * 30 , httpOnly: true});
       res.send('Verified');
     } else {
-      res.status(400).send({ errors: { Email: 'Invalid email or password' } });
+      res.send({ errors: { Email: 'Invalid email or password' } });
     }
   } catch (e) {
     const errors = { Email: '', Password: '' };
     errors[e.Path] = e.message;
-    res.status(400).send({ errors });
+    res.send({ errors });
   }
 };
 

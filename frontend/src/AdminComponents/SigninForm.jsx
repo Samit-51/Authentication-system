@@ -4,9 +4,11 @@ import axios from 'axios';
 const SigninForm = () => {
   const [Username, setUsername] = useState('');
   const [Email, setEmail] = useState('');
+  const [Secret, setSecret] = useState('');
   const [Password, setPassword] = useState('');
   const [Usernameerror, setUsernameerror] = useState('');
   const [Emailerror, setEmailerror] = useState('');
+  const [SecretError, setSecretError] = useState('');
   const [Passworderror, setPassworderror] = useState('');
   const navigate = useNavigate(); 
   const handleSubmit = async(e) => {
@@ -15,7 +17,7 @@ const SigninForm = () => {
       setEmailerror('');
       setPassworderror('');
       try{
-      const response = await axios.post('http://localhost:3000/signin', {
+      const response = await axios.post('http://localhost:3000/admin/signin', {
         username: Username,
         email: Email,
         password: Password
@@ -60,6 +62,17 @@ const SigninForm = () => {
         </div>
         {Emailerror && <p className="error">{Emailerror}</p>}
         <div className="input-container">
+          <i className="fas fa-key"></i>
+          <input
+          type="password"
+          placeholder="Secret key"
+          onChange ={(e) =>{
+            setSecret(e.target.value)
+          }}
+          />
+        </div>
+        {SecretError && <p className="error">{SecretError}</p>}
+        <div className="input-container">
           <i className="fas fa-lock"></i>
           <input
           type="password"
@@ -77,7 +90,7 @@ const SigninForm = () => {
         </div>
         <button>Sign-in</button>
         </form>
-        <p className="link">Already have an account? <a href="http://localhost:3000/login">Login</a></p>
+        <p className="link">Already have an account? <a href="http://localhost:3000/admin/login">Login</a></p>
       </div>
     </div>
   )

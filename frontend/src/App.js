@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
-import LoginForm from './Components/LoginForm';
-import SigninForm from './Components/SigninForm';
-import Dashboard from './Components/Dashboard';
+import LoginForm from './UserComponents/LoginForm';
+import SigninForm from './UserComponents/SigninForm';
+import Dashboard from './UserComponents/Dashboard';
+import ALoginForm from './AdminComponents/LoginForm';
+import ASigninForm from './AdminComponents/SigninForm';
+import ADashboard from './AdminComponents/Dashboard';
 import { Routes, Route}from 'react-router-dom';
 import axios from 'axios';
 const App =  () =>{
@@ -22,7 +25,6 @@ const App =  () =>{
           navigate('/signin'); 
         }
     };
-    checkToken();
   }, [navigate]);
   
   return(
@@ -31,6 +33,9 @@ const App =  () =>{
         <Route path="/signin" element={<SigninForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin/signin" element={<ASigninForm />} />
+        <Route path="/admin/login" element={<ALoginForm />} />
+        <Route path="/admin/dashboard" element={<ADashboard />} />
       </Routes>
     );
 }  
