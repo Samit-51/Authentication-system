@@ -5,7 +5,7 @@ const { check }  = require('email-existence');
 const admin = new mongoose.Schema({
   Username: {
     type: String,
-    required: [true, 'Please enter a User|name.'],
+    required: [true, 'Please enter a username.'],
     unique: true
   },
   Email: {
@@ -33,24 +33,25 @@ const admin = new mongoose.Schema({
     minlength: [8, 'Password must be at least 8 characters long.']
   },
   Secret: {
-    type: String,
-    required: [true, 'Please enter the secret key.'],
-    validate: {
-      validator: function(value) {
-        return value === '12se45gh';
-      },
-      message: 'Invalid secret key.'
-    }
+  type: String,
+  required: [true, 'Please enter the secret key.'],
+  validate: {
+    validator: function(value) {
+      if (!value) return true;
+      return value === '12se45gh';
+    },
+    message: 'Invalid secret key.'
   }
-  
+}
 });
 
 admin.pre('save', async function(next){
   this.Password = await bcrypt.hash(this.Password, 10);
+  this.Secret = await bcrypt.hash(this.Secret, 10);
   next();
 });
 
-admin.statics.login= async function(email, password,secret){
+admin.statics.login= async function(email, password, secret){
     const admin = await this.findOne({Email: email});
     if(admin){
       const auth = await bcrypt.compare(password, admin.Password);

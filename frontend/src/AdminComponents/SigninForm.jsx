@@ -16,20 +16,23 @@ const SigninForm = () => {
       setUsernameerror('');
       setEmailerror('');
       setPassworderror('');
+      setSecretError('')
       try{
       const response = await axios.post('http://localhost:3000/admin/signin', {
         username: Username,
         email: Email,
-        password: Password
+        password: Password,
+        secret: Secret
       });
       if(response.data.errors){
         let errors = response.data.errors;
         setUsernameerror(errors.Username);
         setEmailerror(errors.Email);
         setPassworderror(errors.Password);
+        setSecretError(errors.Secret);
         return;
       }
-      navigate('/dashboard');
+      navigate('/admin/dashboard');
       } catch (error) {
        console.error('Error creating user', error);
      }

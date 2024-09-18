@@ -33,7 +33,7 @@ module.exports.signin_post = async (req, res) => {
     });
     const token = jwt.sign({ Username: user.Username }, process.env.JWT_SECRET);
     res.cookie('jwt', token, { maxAge: 1000 * 60 * 5 });
-    res.send('Verified');
+    res.send('Verified')
   } catch (e) {
     const errors = handleErrors(e);
     res.send({ errors });

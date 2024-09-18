@@ -1,7 +1,7 @@
 const Dashboard = () =>{
   return(
     <div className="wrapper">
-    <h1>Dashboard</h1>
+    <h1>Congratulations you are a admin!</h1>
     </div>
     )
 }

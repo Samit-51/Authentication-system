@@ -14,18 +14,21 @@ const LoginForm = () => {
       e.preventDefault();
       setEmailerror('');
       setPassworderror('');
+      setSecretError('');
       try{
         const response = await axios.post('http://localhost:3000/admin/login', {
         email: Email,
-        password: Password
+        password: Password,
+        secret: Secret
       });
       if(response.data.errors){
         let errors = response.data.errors;
         setEmailerror(errors.Email);
         setPassworderror(errors.Password);
+        setSecretError(errors.Secret);
         return;
       }
-      navigate('/dashboard');
+      navigate('/admin/dashboard');
       } catch (error) {
        console.error('Error loging-in user', error);
      }
