@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { check }  = require('email-existence');
 
 const admin = new mongoose.Schema({
-  adminname: {
+  Username: {
     type: String,
     required: [true, 'Please enter a User|name.'],
     unique: true

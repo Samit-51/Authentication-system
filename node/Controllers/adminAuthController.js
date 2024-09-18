@@ -1,8 +1,9 @@
-const Admin = require('../modules/Admin');
+const Admin = require('../modules/Admins');
 const jwt = require('jsonwebtoken');
 
 const handleErrors = (err) => {
   let errors = { Username: '', Email: '', Password: '', Secret: ''};
+  console.log(err.message);
   if (err.code === 11000) {
     if (Object.keys(err.keyPattern).includes('Email')) {
       errors.Email = 'Email already registered.';
@@ -12,10 +13,11 @@ const handleErrors = (err) => {
     return errors;
   }
   
-  if (err.message.includes('Users validation failed')) {
+  if (err.message.includes('admins validation failed')) {
     Object.values(err.errors).forEach((properties) => {
       errors[properties.path] = properties.message;
     });
+    console.log(errors)
     return errors;
   }
   return errors;
@@ -23,8 +25,9 @@ const handleErrors = (err) => {
 
 module.exports.signin_post = async (req, res) => {
   const { username, email, password } = req.body;
+  console.log('Admin signin rq')
   try {
-    const user = await User.create({
+    const admin = await Admin.create({
       Username: username,
       Email: email,
       Password: password,
@@ -32,18 +35,18 @@ module.exports.signin_post = async (req, res) => {
     res.send('Verified');
   } catch (e) {
     const errors = handleErrors(e);
-    res.status(400).send({ errors });
+    res.send({ errors });
   }
 };
 
 module.exports.login_post = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await Admin.login(email, password);
+    const admin = await Admin.login(email, password);
     res.send('Verified');
   } catch (e) {
     const errors = { Email: '', Password: '' };
     errors[e.Path] = e.message;
-    res.status(400).send({ errors });
+    res.send({ errors });
   }
 };
