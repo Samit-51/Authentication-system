@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const AuthRoutes = require('./Routes/Authroutes');
+const AdminAuthRoutes = require('./Routes/AdminRoutes');
 require('dotenv').config();
 const path = require('path');
 const cors = require('cors');
@@ -31,3 +32,4 @@ app.use(cors({
 }));
 app.use(express.json())
 app.use(AuthRoutes);
+app.use('/admin', AdminAuthRoutes);

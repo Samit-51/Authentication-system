@@ -37,7 +37,7 @@ const SigninForm = () => {
   return(
     <div className="wrapper">
       <div className="container">
-        <h1>Create your account.</h1>
+        <h1>Create your admin account.</h1>
         <form onSubmit={handleSubmit}>
         <div className="input-container">
           <i className="fas fa-user"></i>
