@@ -1,11 +1,12 @@
-echo -e 'Adding files:\n'
+clear
+echo -e '\n\nAdding files:\n'
 git add . && \
 
-echo -e 'Status:\n' && \
+echo -e '\n\nStatus:\n' && \
 git status && \
 
-echo -e 'Committing changes\n' && \
+echo -e '\n\nCommitting changes\n' && \
 git commit -m 'Code updated' && \
 
-echo -e 'Pushing changes\n' && \
+echo -e '\nPushing changes\n' && \
 git push origin main
