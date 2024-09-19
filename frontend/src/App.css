@@ -1,13 +1,16 @@
+
 @property --angle{
   syntax : '<angle>';
   inherits: false;
   initial-value: 0deg;
 }
+
 @property --blur{
   syntax: '<length>';
   inherits: true;
   initial-value: 0px;
 }
+
 *{
   margin: 0;
   padding: 0;
@@ -43,6 +46,7 @@ body {
   position: relative;
   z-index: -2;
   display: flex;
+  text-align: center;
   flex-direction: column;
 }
 .input-container{
@@ -97,7 +101,7 @@ button::after{
   border-radius: inherit;
   z-index: -1;
   padding: 2px;
-  animation: animate linear 10s infinite;
+  animation: animate linear 5s infinite;
 }
 
 button::after{

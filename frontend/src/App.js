@@ -19,17 +19,20 @@ const App =  () =>{
           if (response.data.success) {
             navigate('/dashboard'); 
           }else{
-            navigate('/signin'); 
+            navigate('/login'); 
           }
         } catch (error) {
           navigate('/signin'); 
         }
     };
+    if (!window.location.pathname.startsWith('/admin')) {
+      checkToken();
+    }
   }, [navigate]);
   
   return(
       <Routes>
-        <Route path="/" element={<SigninForm />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/signin" element={<SigninForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -39,6 +42,5 @@ const App =  () =>{
       </Routes>
     );
 }  
-
 
 export default App;
