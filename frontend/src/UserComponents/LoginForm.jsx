@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import '../Css/Form.css';
 const LoginForm = () => {
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
@@ -59,7 +59,7 @@ const LoginForm = () => {
         {Passworderror && <p className="error">{Passworderror}</p>}
         <button>Log-in</button>
         </form>
-        <p className="link">Don't have a account? <a href="http://localhost:3000/signin">Create one!</a></p>
+        <p className="link">Don't have a account?<a href="http://localhost:3000/signin">Create one!</a></p>
       </div>
     </div>
   )

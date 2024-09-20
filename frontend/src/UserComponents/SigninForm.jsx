@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../Css/Form.css'
 const SigninForm = () => {
   const [Username, setUsername] = useState('');
   const [Email, setEmail] = useState('');
@@ -35,7 +36,7 @@ const SigninForm = () => {
   return(
     <div className="wrapper">
       <div className="container">
-        <h1>Create your account.</h1>
+        <h1>Register</h1>
         <form onSubmit={handleSubmit}>
         <div className="input-container">
           <i className="fas fa-user"></i>
