@@ -23,7 +23,6 @@
   display: grid;
   place-items: center;
   z-index: -6;
-}
 
 .container{
   background: #252525;
@@ -119,4 +118,6 @@ button::after{
   text-decoration: none;
   color: rgb(112, 225, 19);
   font-size: 14px;
+}
+
 }

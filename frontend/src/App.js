@@ -26,7 +26,6 @@ const App =  () =>{
         }
     };
     if (!window.location.pathname.startsWith('/admin')) {
-      checkToken();
     }
   }, [navigate]);
   
