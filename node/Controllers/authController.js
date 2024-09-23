@@ -60,14 +60,15 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.verifyToken = async (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log('Request received');
   if (token) {
     try {
       await jwt.verify(token, process.env.JWT_SECRET);
-      res.send({success: true});
+      res.send({success: true, token: true});
     } catch (error) {
-      res.send({ success: false});
+      res.send({ success: false, token: true});
     }
   } else {
-    res.send({ success: false});
+    res.send({ token: false});
   }
 };
