@@ -1,36 +1,73 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Hotel from '../Info/Hotel';
+import '../Css/Dashboard.css';
+import { useState, useEffect } from 'react';
 
 const Dashboard = () => {
-  const [hotels, setHotels] = useState([]);  
+  const [date, setDate] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
+  const [minute, setMinute] = useState('');
+  const [hour, setHour] = useState('');
+  const [greeting, setGreeting] = useState('');
+
   useEffect(() => {
-    const fetchHotels = async () => {
-      try {
-        const response = await axios.post('http://localhost:3000/hotel/getHotels');
-        setHotels(response.data); 
-      } catch (error) {
-        console.error('Error fetching hotels:', error);
+    const Days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    const updateDateTime = () => {
+      const now = new Date();
+      const currentDay = Days[now.getDay()];
+      const currentDate = now.getDate();
+      const currentMonth = now.toLocaleString('default', { month: 'short' });
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
+      setDate(currentDate);
+      setMonth(currentMonth);
+      setDay(currentDay);
+      currentHour <= 9 ? setHour('0'+ currentHour) : setHour(currentHour)
+      currentMinute <= 9 ? setMinute('0'+ currentMinute) : setMinute(currentMinute)
+
+      if (currentHour >= 6 && currentHour < 12) {
+        setGreeting('morning.');
+      } else if (currentHour >= 12 && currentHour < 16) {
+        setGreeting('afternoon.');
+      } else if (currentHour >= 16 && currentHour < 18) {
+        setGreeting('evening.');
+      } else {
+        setGreeting('night.');
       }
     };
-    fetchHotels();
-  }, []);  
+    updateDateTime();
+
+    const interval = setInterval(updateDateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="wrapper">
-      <div className="Container">
-        <div className="Hotel">
+    <div className="dashboard">
+      <div className="greetings">
+        <div className="greeting">
+          <p style={{ fontFamily: "Cursive", color: "yellow", fontSize: "16px" }}>Hello</p>
+          Good <br /> {greeting}
+          <p className="motivation">HAVE A GREAT DAY</p>
+          <p>{hour}:{minute}</p>
+        </div>
+        <div className="dates">
+          <div className="date">
+          <div className="day">{ date }</div>
+          <div className="mth">{ month }</div>
+        </div>
+        <p style={{fontFamily:'Concert One', fontSize:'34px'}}>{day}</p>
+      </div>
+      </div>
+      <div className="hotels">
+        <div className="header">
           <h1>Hotels</h1>
-          {hotels.length > 0 ? (
-            hotels.map(hotel => (
-              <Hotel Name={hotel.Name} Id={hotel.id}  Qr={hotel.qr}/>
-            ))
-          ) : (
-            <p>No hotels found.</p>
-          )}
+          <button className="admin-btn">Add hotel</button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

@@ -3,8 +3,8 @@ const Hotel= ({Name, Id, Qr})=> {
       <div className= "hotelcard">
         <div className="img"></div>
         <div className= "info">
-          <span>{Name}</span><br/>
-          <span>{Id}</span>
+          <span>{ Name }</span><br/>
+          <span>{ Id }</span>
         </div>
       </div>
   );

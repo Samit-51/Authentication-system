@@ -24,7 +24,6 @@ const handleErrors = (err) => {
 
 module.exports.signin_post = async (req, res) => {
   const { username, email, password } = req.body;
-  console.log(req.body)
   try {
     const user = await User.create({
       Username: username,
@@ -60,14 +59,15 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.verifyToken = async (req, res, next) => {
   const token = req.cookies.jwt;
-  console.log('Request received');
   if (token) {
-    try {
-      await jwt.verify(token, process.env.JWT_SECRET);
-      res.send({success: true, token: true});
-    } catch (error) {
-      res.send({ success: false, token: true});
-    }
+    jwt.verify(token, process.env.JWT_SECRET, async (err,decoded)=>{
+      if(err){
+        res.send({ success: false, token: true});
+      }else{
+        const user = await User.findOne({Username: decoded.Username});
+        res.send({success: true, token: true, user: user});
+      }
+    });
   } else {
     res.send({ token: false});
   }

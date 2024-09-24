@@ -23,7 +23,7 @@
   display: grid;
   place-items: center;
   z-index: -6;
-}
+
 .container{
   background: #252525;
   padding: 20px 30px;
@@ -102,7 +102,6 @@ button::after{
   z-index: -2;
   padding: 3px;
   animation: animate 5s linear infinite;
-  transition: all .3s;
 }
 
 @keyframes animate{
@@ -115,4 +114,6 @@ button::after{
   text-decoration: none;
   color: rgb(112, 225, 19);
   font-size: 14px;
+}
+
 }

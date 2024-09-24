@@ -12,7 +12,4 @@ const hotel = mongoose.Schema({
   }
 })
 
-hotel.pre('save', async function(next){
-  this.HotelId = await 
-});
 module.exports = mongoose.model('Hotel', hotel);

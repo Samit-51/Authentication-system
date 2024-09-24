@@ -1,7 +1,7 @@
 import '../Css/Dashboard.css';
 import { useState, useEffect } from 'react';
 
-const Dashboard = () => {
+const Dashboard = ({ User }) => {
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
@@ -23,8 +23,8 @@ const Dashboard = () => {
       setDate(currentDate);
       setMonth(currentMonth);
       setDay(currentDay);
-      setHour(currentHour);
-      setMinute(currentMinute);
+      currentHour <= 9 ? setHour('0'+ currentHour) : setHour(currentHour)
+      currentMinute <= 9 ? setMinute('0'+ currentMinute) : setMinute(currentMinute)
 
       if (currentHour >= 6 && currentHour < 12) {
         setGreeting('morning.');

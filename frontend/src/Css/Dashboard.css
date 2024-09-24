@@ -14,10 +14,8 @@
   background-image: url('./Bg.jpg');
   background-size: cover;
   color: white;
-}  
 
 .greetings {
-  height: 60%;
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -69,4 +67,18 @@
   opacity: .6;
   letter-spacing: 3px;
   font-size: 14px;
+}
+.header{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+.admin-btn{
+  padding: 8px 20px;
+  background: rgb(111, 225, 12);
+  border: none;
+  border-radius: 100vw;
+  font-size: 14px;
+}
 }
