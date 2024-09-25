@@ -1,6 +1,7 @@
 import '../Css/Dashboard.css';
 import { useState, useEffect } from 'react';
-
+import axios from 'axios';
+import Hotel from '../Info/Hotel';
 const Dashboard = () => {
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
@@ -8,7 +9,15 @@ const Dashboard = () => {
   const [minute, setMinute] = useState('');
   const [hour, setHour] = useState('');
   const [greeting, setGreeting] = useState('');
-
+  const [Hotels, setHotels] = useState([]);
+  const [show, setShow] = useState('');
+  const [HotelName, setHotelName] = useState('');
+  const handelSubmit = async(e)=>{
+    e.preventDefault();
+    const response = await axios.post('http://localhost:3000/info/addHotels', {
+      HotelName : HotelName
+    });
+  }
   useEffect(() => {
     const Days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -39,7 +48,11 @@ const Dashboard = () => {
     updateDateTime();
 
     const interval = setInterval(updateDateTime, 1000);
-
+    const getHotels = async () =>{
+      const hotels = await axios.post('http://localhost:3000/info/getHotels');
+      setHotels(hotels);
+    }
+    getHotels();
     return () => clearInterval(interval);
   }, []);
 
@@ -63,8 +76,32 @@ const Dashboard = () => {
       <div className="hotels">
         <div className="header">
           <h1>Hotels</h1>
-          <button className="admin-btn">Add hotel</button>
+          <button className="admin-btn" onClick={()=>{
+            setShow(true);}
+          }><i className="fa-solid fa-plus"></i> Add</button>
         </div>
+        <form onSubmit={handelSubmit}>
+        <input 
+          type="text"
+          placeholder="Hotel name"
+          className="admin-input" 
+          style={show ? {display:"block"} : {display: "none"}}
+          onChange={(e)=>{
+            setHotelName(e.target.value);
+          }}
+          />
+          </form>
+        <div className="hotel-cards">
+            {
+              Hotels.length > 0 ? (
+                Hotels.map(hotel => (
+                  <Hotel key={hotel.Id} Name="Hotel12" Id={hotel.Id} Qr={hotel.Qr} />
+                ))
+              ) : (
+                <p>No hotels available</p>
+              )
+            }
+          </div>
       </div>
     </div>
   );

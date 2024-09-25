@@ -9,7 +9,11 @@ const hotel = mongoose.Schema({
     type: String,
   },
   HotelQr: {
+    type: String
   }
 })
 
+hotel.pre('save', async function(next){
+  this.HotelId = await Math.floor(1000+ Math.random()*9000).toString();
+})
 module.exports = mongoose.model('Hotel', hotel);

@@ -68,6 +68,10 @@
   letter-spacing: 3px;
   font-size: 14px;
 }
+.hotels{
+  display: flex;
+  flex-direction: column
+}
 .header{
   display: flex;
   align-items: center;
@@ -75,10 +79,29 @@
   justify-content: space-between;
 }
 .admin-btn{
-  padding: 8px 20px;
-  background: rgb(111, 225, 12);
+  padding: 8px 12px;
+  background: rgb(112, 225, 23);
   border: none;
   border-radius: 100vw;
   font-size: 14px;
+  transition: all .3s;
+}
+.admin-btn:hover{
+  scale: .9;
+}
+.admin-input{
+  width: 90%;
+  height: 38px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  padding: 8px 8px;
+  margin-inline: auto;
+  color: white;
+  background: transparent;
+  backdrop-filter: blur(20px);
+}
+.admin-input::placeholder{
+  color: white
 }
 }
