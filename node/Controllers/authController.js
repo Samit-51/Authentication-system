@@ -31,7 +31,7 @@ module.exports.signin_post = async (req, res) => {
       Password: password,
     });
     const token = jwt.sign({ Username: user.Username }, process.env.JWT_SECRET);
-    res.cookie('jwt', token, { maxAge: 1000 * 60 * 5 });
+    res.cookie('jwt', token, { maxAge: 1000 * 60 * 5});
     res.send('Verified')
   } catch (e) {
     const errors = handleErrors(e);
@@ -59,6 +59,7 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.verifyToken = async (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(token)
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, async (err,decoded)=>{
       if(err){

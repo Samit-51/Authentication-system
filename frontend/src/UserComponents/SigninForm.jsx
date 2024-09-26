@@ -16,7 +16,7 @@ const SigninForm = () => {
       setEmailerror('');
       setPassworderror('');
       try{
-      const response = await axios.post('http://localhost:3000/signin', {
+      const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/signin`, {
         username: Username,
         email: Email,
         password: Password
@@ -78,7 +78,7 @@ const SigninForm = () => {
         </div>
         <button>Sign-in</button>
         </form>
-        <p className="link">Already have an account? <a href="http://localhost:3000/login">Login</a></p>
+        <p className="link">Already have an account? <a href={`http://${process.env.REACT_APP_HOST}:3000/login`}>Login</a></p>
       </div>
     </div>
   )

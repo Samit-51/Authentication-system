@@ -13,7 +13,7 @@ const LoginForm = () => {
       setEmailerror('');
       setPassworderror('');
       try{
-        const response = await axios.post('http://localhost:3000/login', {
+        const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/login`, {
         email: Email,
         password: Password
       });
@@ -25,7 +25,7 @@ const LoginForm = () => {
       }
       navigate('/dashboard');
       } catch (error) {
-       console.error('Error loging-in user', error);
+       alert('Error loging-in user', error);
      }
     }
   return(    
@@ -59,7 +59,7 @@ const LoginForm = () => {
         {Passworderror && <p className="error">{Passworderror}</p>}
         <button>Log-in</button>
         </form>
-        <p className="link">Don't have a account?<a href="http://localhost:3000/signin">Create one!</a></p>
+        <p className="link">Don't have a account?<a href={`http://${process.env.REACT_APP_HOST}:3000/signin`}>Create one!</a></p>
       </div>
     </div>
   )

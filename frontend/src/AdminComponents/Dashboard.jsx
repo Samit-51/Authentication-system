@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [HotelName, setHotelName] = useState('');
   const handelSubmit = async(e)=>{
     e.preventDefault();
-    const response = await axios.post('http://localhost:3000/info/addHotels', {
+    const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/addHotels`, {
       HotelName : HotelName
     });
   }
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
     const interval = setInterval(updateDateTime, 1000);
     const getHotels = async () =>{
-      const hotels = await axios.post('http://localhost:3000/info/getHotels');
+      const hotels = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/getHotels`);
       setHotels(hotels);
     }
     getHotels();

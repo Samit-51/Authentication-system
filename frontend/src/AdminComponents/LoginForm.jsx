@@ -16,7 +16,7 @@ const LoginForm = () => {
       setPassworderror('');
       setSecretError('');
       try{
-        const response = await axios.post('http://localhost:3000/admin/login', {
+        const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/admin/login`, {
         email: Email,
         password: Password,
         secret: Secret
@@ -76,7 +76,7 @@ const LoginForm = () => {
         {Passworderror && <p className="error">{Passworderror}</p>}
         <button>Log-in</button>
         </form>
-        <p className="link">Don't have a account? <a href="http://localhost:3000/admin/signin">Create one!</a></p>
+        <p className="link">Don't have a account? <a href={`http://${process.env.REACT_APP_HOST}:3000/admin/signin`}>Create one!</a></p>
       </div>
     </div>
   )

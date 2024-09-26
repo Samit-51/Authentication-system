@@ -18,7 +18,7 @@ const SigninForm = () => {
       setPassworderror('');
       setSecretError('')
       try{
-      const response = await axios.post('http://localhost:3000/admin/signin', {
+      const response = await axios.post('http://192.168.1.66:3000/admin/signin', {
         username: Username,
         email: Email,
         password: Password,
@@ -93,7 +93,7 @@ const SigninForm = () => {
         </div>
         <button>Sign-in</button>
         </form>
-        <p className="link">Already have an account? <a href="http://localhost:3000/admin/login">Login</a></p>
+        <p className="link">Already have an account? <a href="http://192.168.1.66:3000/admin/login">Login</a></p>
       </div>
     </div>
   )

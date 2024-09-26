@@ -12,7 +12,7 @@ const app = express();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DB_URI);
-    app.listen(3000);
+    app.listen(3000, '0.0.0.0');
     console.log('Successfully connected to the database!');
   } catch (e) {
     console.log(e.message);
@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
 });
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: 'http://192.168.1.65:3001',
   credentials: true 
 }));
 app.use(express.json())
