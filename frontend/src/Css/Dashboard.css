@@ -9,19 +9,38 @@
 }
 
 .dashboard {
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  background-image: url('./Bg.jpg');
-  background-size: cover;
   color: white;
+  background: #000;
 
 .greetings {
+  height: 80%;
   width: 100%;
   display: flex;
   align-items: flex-start;
   padding: 50px 20px;
+  background-image: url('./Bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
-
+.greetings::before,.greetings::after{
+  content: '';
+  height: 100px;
+  width: 50%;
+  background: red;
+  position: absolute;
+  bottom: -50px;
+}
+.greetings::before{
+  border-radius: 0 100vw 70vw 100vw;
+  left: -10px;
+}
+.greetings::after{
+  border-radius: 0 100vw;
+  right: 0;
+}
 .dates {
   flex: 1;
 }
@@ -103,5 +122,19 @@
 }
 .admin-input::placeholder{
   color: white
+}
+.hotel-cards{
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
+  overflow: scroll;
+}
+.hotelCard{
+  width: 90%;
+  background: transparent;
+  height: 320px;
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
 }
 }

@@ -50,7 +50,7 @@ const Dashboard = () => {
     const interval = setInterval(updateDateTime, 1000);
     const getHotels = async () =>{
       const hotels = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/getHotels`);
-      setHotels(hotels);
+      setHotels(hotels.data.Hotels);
     }
     getHotels();
     return () => clearInterval(interval);
@@ -95,10 +95,10 @@ const Dashboard = () => {
             {
               Hotels.length > 0 ? (
                 Hotels.map(hotel => (
-                  <Hotel key={hotel.Id} Name="Hotel12" Id={hotel.Id} Qr={hotel.Qr} />
+                  <Hotel Name="Hotel12" Id="0056" Qr="" />
                 ))
               ) : (
-                <p>No hotels available</p>
+                <Hotel Name="Hotel12" Id="0056" Qr="" />
               )
             }
           </div>

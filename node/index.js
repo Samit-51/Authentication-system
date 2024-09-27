@@ -27,7 +27,6 @@ app.get('*', (req, res) => {
 });
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://192.168.1.65:3001',
   credentials: true 
 }));
 app.use(express.json())

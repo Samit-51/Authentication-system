@@ -2,7 +2,7 @@ const Hotel= require('../modules/Hotel');
 
 module.exports.getHotels = async(req,res)=>{
   const hotels = await Hotel.find();
-  res.send({ Hotels: hotels})
+  res.send({ Hotels: hotels});
 }
 module.exports.addHotels = async (req, res)=>{
   const { HotelName }= req.body;

@@ -1,6 +1,6 @@
 const Hotel= ({Name, Id, Qr})=> {
   return(
-      <div className= "hotelcard">
+      <div className= "hotelCard">
         <div className="img"></div>
         <div className= "info">
           <span>{ Name }</span><br/>
