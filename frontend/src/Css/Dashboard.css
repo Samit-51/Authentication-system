@@ -9,13 +9,14 @@
 }
 
 .dashboard {
-  height: 100vh;
+  height: fit-content;
   width: 100%;
   color: white;
-  background: #000;
+  background: #141414;
+  overflow: hidden;
 
 .greetings {
-  height: 80%;
+  height: 60vh;
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -25,21 +26,18 @@
   background-repeat: no-repeat;
   position: relative;
 }
-.greetings::before,.greetings::after{
+.greetings::before{
   content: '';
-  height: 100px;
+  aspect-ratio: 1/1;
   width: 50%;
-  background: red;
+  background: none;
   position: absolute;
-  bottom: -50px;
 }
 .greetings::before{
-  border-radius: 0 100vw 70vw 100vw;
-  left: -10px;
-}
-.greetings::after{
-  border-radius: 0 100vw;
-  right: 0;
+  border-radius: 0 0 0 100vw;
+  left: 0px;
+  bottom: 0px;
+  box-shadow: -100px 100px 0 100px #141414;
 }
 .dates {
   flex: 1;
@@ -117,8 +115,7 @@
   padding: 8px 8px;
   margin-inline: auto;
   color: white;
-  background: transparent;
-  backdrop-filter: blur(20px);
+  background: #036f68;
 }
 .admin-input::placeholder{
   color: white
@@ -128,13 +125,21 @@
   place-items: center;
   margin-top: 10px;
   overflow: scroll;
+  padding: 20px;
 }
 .hotelCard{
   width: 90%;
-  background: transparent;
+  background: #252525;
   height: 320px;
   border-radius: 20px;
   padding: 20px;
-  backdrop-filter: blur(10px);
+}
+.img{
+  height: 70%;
+  width: 100%;
+}
+.Hotelname{
+  font-size: 32px;
+  font-family: 'Popins';
 }
 }

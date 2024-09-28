@@ -3,7 +3,7 @@ const Hotel= ({Name, Id, Qr})=> {
       <div className= "hotelCard">
         <div className="img"></div>
         <div className= "info">
-          <span>{ Name }</span><br/>
+          <span className="Hotelname">{ Name }</span><br/>
           <span>{ Id }</span>
         </div>
       </div>
