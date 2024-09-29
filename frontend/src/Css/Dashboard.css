@@ -103,8 +103,8 @@
   font-size: 14px;
   transition: all .3s;
 }
-.admin-btn:hover{
-  scale: .9;
+.admin-btn:active{
+  scale: .8;
 }
 .admin-input{
   width: 90%;
@@ -116,6 +116,17 @@
   margin-inline: auto;
   color: white;
   background: #036f68;
+}
+.show{
+  animation: ani 5s forwards;
+}
+@keyframes ani{
+  0%{
+    background: blue;
+  }
+  100%{
+    background: red;
+  }
 }
 .admin-input::placeholder{
   color: white
@@ -140,6 +151,5 @@
 }
 .Hotelname{
   font-size: 32px;
-  font-family: 'Popins';
 }
 }

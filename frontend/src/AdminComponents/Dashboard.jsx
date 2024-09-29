@@ -76,15 +76,14 @@ const Dashboard = () => {
       <div className="hotels">
         <div className="header">
           <h1>Hotels</h1>
-          <button className="admin-btn" onClick={()=>{
-            setShow(true);}
+          <button className="admin-btn" onClick={()=>{ setShow(!show)}
           }><i className="fa-solid fa-plus"></i> Add</button>
         </div>
         <form onSubmit={handelSubmit}>
         <input 
           type="text"
           placeholder="Hotel name"
-          className="admin-input" 
+          className={`admin-input ${'show'}`}
           style={show ? {display:"block"} : {display: "none"}}
           onChange={(e)=>{
             setHotelName(e.target.value);
