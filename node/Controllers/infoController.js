@@ -6,14 +6,20 @@ module.exports.getHotels = async(req,res)=>{
 }
 module.exports.addHotels = async (req, res)=>{
   const { HotelName }= req.body;
-  console.log(req.body);
+  let errors = { HotelName };
   try{
     const hotel = await Hotel.create({
       HotelName: HotelName
     })
     res.send('Verified');
-  }catch(e){
-    console.log(e.message)
+  }catch(err){
+    if (err.message.includes('Hotel validation failed')) {
+    Object.values(err.errors).forEach((properties) => {
+      errors[properties.path] = properties.message;
+      console.log(errors);
+    });
+    res.send({errors});
+    }
   }
 }
 
