@@ -36,7 +36,7 @@ const App =  () =>{
 
   const checkToken = async () => {
     if(!window.location.pathname.startsWith('/admin')){
-    const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/check-token`, {}, { withCredentials: true });
+    const response = await axios.post(`http://localhost:3000/check-token`, {}, { withCredentials: true });
     return response.data;
     }
   };

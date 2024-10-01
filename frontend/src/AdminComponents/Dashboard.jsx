@@ -12,11 +12,18 @@ const Dashboard = () => {
   const [Hotels, setHotels] = useState([]);
   const [show, setShow] = useState('');
   const [HotelName, setHotelName] = useState('');
+  const [error, setError] = useState('');
   const handelSubmit = async(e)=>{
     e.preventDefault();
     const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/addHotels`, {
       HotelName : HotelName
     });
+    if(response.data.errors) {
+      setError(response.data.errors.HotelName);
+      return;
+    }else{
+      alert('Hotel added succesfully.')
+    }
   }
   useEffect(() => {
     const Days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -29,7 +36,7 @@ const Dashboard = () => {
       const currentHour = now.getHours();
       const currentMinute = now.getMinutes();
 
-      setDate(currentDate);
+      currentDate < 10 ? setDate('0' + currentDate) : setDate(currentDate);
       setMonth(currentMonth);
       setDay(currentDay);
       currentHour <= 9 ? setHour('0'+ currentHour) : setHour(currentHour)
@@ -53,7 +60,9 @@ const Dashboard = () => {
       setHotels(hotels.data.Hotels);
     }
     getHotels();
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval)
+    };
   }, []);
 
   return (
@@ -83,21 +92,22 @@ const Dashboard = () => {
         <input 
           type="text"
           placeholder="Hotel name"
-          className={`admin-input ${'show'}`}
+          className="admin-input"
           style={show ? {display:"block"} : {display: "none"}}
           onChange={(e)=>{
             setHotelName(e.target.value);
           }}
           />
+          {error && <p>{error}</p>}
           </form>
         <div className="hotel-cards">
             {
               Hotels.length > 0 ? (
                 Hotels.map(hotel => (
-                  <Hotel Name="Hotel12" Id="0056" Qr="" />
+                  <Hotel Name={hotel.HotelName} Id={hotel.HotelId} Qr="" />
                 ))
               ) : (
-                <Hotel Name="Hotel12" Id="0056" Qr="" />
+              <p>No hotel found</p>
               )
             }
           </div>

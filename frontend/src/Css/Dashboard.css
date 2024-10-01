@@ -9,6 +9,7 @@
 }
 
 .dashboard {
+  min-height: 100dvh;
   height: fit-content;
   width: 100%;
   color: white;
@@ -117,29 +118,21 @@
   color: white;
   background: #036f68;
 }
-.show{
-  animation: ani 5s forwards;
-}
-@keyframes ani{
-  0%{
-    background: blue;
-  }
-  100%{
-    background: red;
-  }
-}
 .admin-input::placeholder{
   color: white
 }
 .hotel-cards{
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  gap: 30px;
   margin-top: 10px;
   overflow: scroll;
   padding: 20px;
+  height: 350px;
+  background: #111111;
 }
 .hotelCard{
-  width: 90%;
+  min-width: 90%;
   background: #252525;
   height: 320px;
   border-radius: 20px;
