@@ -1,5 +1,5 @@
 import '../Css/Dashboard.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Hotel from '../Info/Hotel';
 const Dashboard = () => {
@@ -13,8 +13,10 @@ const Dashboard = () => {
   const [show, setShow] = useState('');
   const [HotelName, setHotelName] = useState('');
   const [error, setError] = useState('');
+  const inputRef = useRef(null);  
   const handelSubmit = async(e)=>{
     e.preventDefault();
+    setError('');
     const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/addHotels`, {
       HotelName : HotelName
     });
@@ -22,9 +24,15 @@ const Dashboard = () => {
       setError(response.data.errors.HotelName);
       return;
     }else{
-      alert('Hotel added succesfully.')
+      setHotelName('');
+      inputRef.current.blur();
+      getHotels();
     }
   }
+  const getHotels = async () =>{
+      const hotels = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/getHotels`);
+      setHotels(hotels.data.Hotels);
+    }
   useEffect(() => {
     const Days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -55,10 +63,6 @@ const Dashboard = () => {
     updateDateTime();
 
     const interval = setInterval(updateDateTime, 1000);
-    const getHotels = async () =>{
-      const hotels = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/getHotels`);
-      setHotels(hotels.data.Hotels);
-    }
     getHotels();
     return () => {
       clearInterval(interval)
@@ -88,15 +92,17 @@ const Dashboard = () => {
           <button className="admin-btn" onClick={()=>{ setShow(!show)}
           }><i className="fa-solid fa-plus"></i> Add</button>
         </div>
-        <form onSubmit={handelSubmit}>
+        <form className={`${show ? 'show': ''}`}
+        onSubmit={handelSubmit}>
         <input 
           type="text"
           placeholder="Hotel name"
           className="admin-input"
-          style={show ? {display:"block"} : {display: "none"}}
+          value= {HotelName}
           onChange={(e)=>{
-            setHotelName(e.target.value);
+            setHotelName(e.target.value.trim());
           }}
+          ref={inputRef}
           />
           {error && <p>{error}</p>}
           </form>

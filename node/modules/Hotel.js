@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const hotel = mongoose.Schema({
   HotelName: {
     type: String,
-    required: [true, 'Please enter the hotel name.'],
+    unique: true,
+    required: [true, 'Please enter the hotel name.']
   },
   HotelId: {
     type: String,

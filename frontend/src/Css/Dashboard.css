@@ -107,6 +107,14 @@
 .admin-btn:active{
   scale: .8;
 }
+form{
+  display: grid;
+  width: 0;
+  height: 0;
+  place-items: center;
+  overflow: hidden;
+  transition: all .3s;
+}
 .admin-input{
   width: 90%;
   height: 38px;
@@ -116,8 +124,12 @@
   padding: 8px 8px;
   margin-inline: auto;
   color: white;
-  background: #036f68;
+  background: rgb(34, 75, 23);
 }
+.show{
+  width: 100%;
+  height: fit-content;
+} 
 .admin-input::placeholder{
   color: white
 }
@@ -126,13 +138,14 @@
   align-items: center;
   gap: 30px;
   margin-top: 10px;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: clip;
   padding: 20px;
   height: 350px;
   background: #111111;
 }
 .hotelCard{
-  min-width: 90%;
+  min-width: 100%;
   background: #252525;
   height: 320px;
   border-radius: 20px;

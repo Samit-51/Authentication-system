@@ -13,10 +13,13 @@ module.exports.addHotels = async (req, res)=>{
     })
     res.send('Verified');
   }catch(err){
+    if (err.code === 11000) {
+      errors.HotelName = 'Hotel is already added.';
+      res.send({errors});
+    }
     if (err.message.includes('Hotel validation failed')) {
     Object.values(err.errors).forEach((properties) => {
       errors[properties.path] = properties.message;
-      console.log(errors);
     });
     res.send({errors});
     }

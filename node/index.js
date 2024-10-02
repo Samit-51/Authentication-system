@@ -27,6 +27,7 @@ app.get('*', (req, res) => {
 });
 app.use(cookieParser());
 app.use(cors({
+  origin: 'http://localhost:3001',
   credentials: true 
 }));
 app.use(express.json())

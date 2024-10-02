@@ -36,9 +36,13 @@ const App =  () =>{
 
   const checkToken = async () => {
     if(!window.location.pathname.startsWith('/admin')){
-    const response = await axios.post(`http://localhost:3000/check-token`, {}, { withCredentials: true });
-    return response.data;
-    }
+      try{
+        const response = await axios.post(`http://localhost:3000/check-token`, {}, { withCredentials: true });
+        return response.data;
+        }catch(e){
+          alert('Server error');
+        }
+      }
   };
   return(
       <Routes>
