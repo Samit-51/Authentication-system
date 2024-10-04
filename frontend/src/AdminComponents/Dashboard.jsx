@@ -18,7 +18,7 @@ const Dashboard = () => {
     e.preventDefault();
     setError('');
     const response = await axios.post(`http://${process.env.REACT_APP_HOST}:3000/info/addHotels`, {
-      HotelName : HotelName
+      HotelName : HotelName.trim()
     });
     if(response.data.errors) {
       setError(response.data.errors.HotelName);
@@ -100,7 +100,7 @@ const Dashboard = () => {
           className="admin-input"
           value= {HotelName}
           onChange={(e)=>{
-            setHotelName(e.target.value.trim());
+            setHotelName(e.target.value);
           }}
           ref={inputRef}
           />

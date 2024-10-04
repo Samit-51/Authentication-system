@@ -124,14 +124,18 @@ form{
   padding: 8px 8px;
   margin-inline: auto;
   color: white;
-  background: rgb(34, 75, 23);
+  background: #1e4d2b;
 }
 .show{
   width: 100%;
   height: fit-content;
 } 
 .admin-input::placeholder{
-  color: white
+  color: white;
+  opacity: .7;
+}
+.admin-input:not(:placeholder-shown){
+  border: 2px solid white;
 }
 .hotel-cards{
   display: flex;
