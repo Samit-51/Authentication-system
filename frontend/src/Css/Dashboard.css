@@ -104,7 +104,7 @@
   font-size: 14px;
   transition: all .3s;
 }
-.admin-btn:active{
+button:active{
   scale: .8;
 }
 form{
@@ -149,6 +149,7 @@ form{
   background: #111111;
 }
 .hotelCard{
+  position: relative;
   min-width: 100%;
   background: #252525;
   height: 320px;
@@ -161,5 +162,17 @@ form{
 }
 .Hotelname{
   font-size: 32px;
+}
+.remove-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: none;
+}
+.remove-btn i{
+  font-size: 22px;
+  color: rgb(225,0,11);
+  opacity: .8;
 }
 }
